@@ -21,8 +21,8 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-#include "kelp_app.h"
-#include "kelp_computer_import.h"
+#include "kelp-app.h"
+#include "kelp-computer-import.h"
 
 #define KELP_STATE_FILE_LOCATION "kelp"
 

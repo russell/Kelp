@@ -21,7 +21,7 @@ bin_PROGRAMS = kelp
 kelp_SOURCES = \
 	callbacks.c \
 	callbacks.h \
-	kelp_prefs.c \
+	kelp-prefs.c \
 	main.c
 
 kelp_LDFLAGS = \
