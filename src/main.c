@@ -114,7 +114,7 @@ create_window (Kelp *kelp)
 	gtk_builder_connect_signals (builder, kelp);
 	window = GTK_WIDGET (gtk_builder_get_object (builder, "window"));
 	kelp->prefs = GTK_WIDGET (gtk_builder_get_object (builder, "kelp_preferences"));
-	kelp->computer_type = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_comptype"));
+	kelp->computer_type = GTK_COMBO_BOX (gtk_builder_get_object (builder, "prefs_comptype"));
 
 	kelp->window = window;
 
