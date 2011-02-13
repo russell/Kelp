@@ -74,7 +74,7 @@ NOT be modal but will be on top of the main application window.
 
 void on_about_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 {
-        static const gchar * const authors[] = {
+	static const gchar * const authors[] = {
 		"Russell Sim <russell.sim@gmail.com>",
 		NULL
 	};
@@ -84,14 +84,14 @@ void on_about_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 
 	static const gchar comments[] = "";
 	gtk_show_about_dialog (GTK_WINDOW (kelp->window),
-			       "authors", authors,
-			       "comments", comments,
-			       "copyright", copyright,
-			       "version", "0.1",
-			       "website", "http://russellsim.org",
-			       "program-name", "Kelp",
-			       "logo-icon-name", GTK_STOCK_EDIT,
-			       NULL);
+						   "authors", authors,
+						   "comments", comments,
+						   "copyright", copyright,
+						   "version", "0.1",
+						   "website", "http://russellsim.org",
+						   "program-name", "Kelp",
+						   "logo-icon-name", GTK_STOCK_EDIT,
+						   NULL);
 }
 
 
