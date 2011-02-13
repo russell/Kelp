@@ -282,13 +282,13 @@
                   <placeholder/>
                 </child>
                 <child>
-                  <object class="GtkFileChooserButton" id="filechooserbutton1">
+                  <object class="GtkFileChooserButton" id="prefs_port">
                     <property name="visible">True</property>
+                    <signal name="file_set" handler="on_prefs_port_file_set"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
-                    <property name="x_options">GTK_EXPAND</property>
                     <property name="y_options">GTK_EXPAND</property>
                   </packing>
                 </child>
