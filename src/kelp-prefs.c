@@ -185,7 +185,7 @@ kelp_intitialise_preferences (Kelp *kelp)
 					gtk_list_store_set (computer_types, &iter,
 										COL_COMPUTER_T, g_backends[i].name,
 										-1);
-					if (!g_ascii_strcasecmp(computer, g_backends[i].name)) {
+					if (computer != NULL && !g_ascii_strcasecmp(computer, g_backends[i].name)) {
 						gtk_combo_box_set_active_iter(kelp->computer_type, &iter);
 					}
 
