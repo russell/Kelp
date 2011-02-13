@@ -160,7 +160,6 @@ kelp_intitialise_preferences (Kelp *kelp)
 			computer = g_key_file_get_string (pref_file, "computer", "type", &error);
 			port = g_key_file_get_string (pref_file, "computer", "port", &error);
 			g_key_file_free (pref_file);
-			printf ("%s\n", computer);
 
 			/* set the computer type */
 			if (computer)
