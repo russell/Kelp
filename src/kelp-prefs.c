@@ -66,7 +66,7 @@ get_preferences_filename (void)
 }
 
 
-static GKeyFile *
+GKeyFile *
 get_kelp_preferences_file (void)
 {
   static GKeyFile *state_file = NULL;

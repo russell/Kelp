@@ -22,6 +22,6 @@
 
 #include <glib.h>
 
-static GKeyFile* get_kelp_preferences_file (void);
+GKeyFile* get_kelp_preferences_file (void);
 
 #endif /* __KELP_PREFS_H__ */
