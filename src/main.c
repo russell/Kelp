@@ -115,6 +115,7 @@ create_window (Kelp *kelp)
 	window = GTK_WIDGET (gtk_builder_get_object (builder, "window"));
 	kelp->prefs = GTK_WIDGET (gtk_builder_get_object (builder, "kelp_preferences"));
 	kelp->computer_type = GTK_COMBO_BOX (gtk_builder_get_object (builder, "prefs_comptype"));
+	kelp->computer_port = GTK_FILE_CHOOSER_BUTTON (gtk_builder_get_object (builder, "prefs_port"));
 
 	kelp->window = window;
 	g_object_unref (builder);
@@ -136,13 +137,16 @@ create_window (Kelp *kelp)
 				}
 
 			port = g_key_file_get_string (pref_file, "computer", "port", &error);
-			if (!port)
+			if (port)
 				{
-					kelp->port = port;
+					gtk_file_chooser_set_file (GTK_FILE_CHOOSER(kelp->computer_port),
+											   g_file_new_for_path (port), &error);
 				}
 			else
 				{
-					// TODO HANDLE ERROR
+					kelp->computer_port = NULL;
+					g_warning ("%s", error->message);
+					g_error_free (error);
 				}
 		}
 

@@ -27,7 +27,7 @@ typedef struct
 	GtkWidget *window;
 	GtkWidget *prefs;
 	GtkComboBox *computer_type;
-	gchar *port;
+	GtkFileChooserButton *computer_port;
 	gchar *computer;
 } Kelp;
 
