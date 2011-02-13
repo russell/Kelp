@@ -200,7 +200,7 @@ on_prefs_comptype_changed (GtkComboBox *combobox, Kelp *kelp)
 			gtk_tree_model_get (model, &iter,
 								COL_COMPUTER_T, &computer_type,
 								-1);
-			g_key_file_set_string (file, "Computer", "Type", computer_type);
+			g_key_file_set_string (file, "computer", "type", computer_type);
 			save_kelp_preferences_file (file);
 		}
 }
@@ -214,7 +214,7 @@ on_prefs_port_file_set (GtkFileChooserButton *button, Kelp *kelp)
 
 	portname = gtk_file_chooser_get_file (GTK_FILE_CHOOSER(button));
 	file = get_kelp_preferences_file();
-	g_key_file_set_string (file, "Computer", "Port", g_file_get_path (portname));
+	g_key_file_set_string (file, "computer", "port", g_file_get_path (portname));
 	save_kelp_preferences_file (file);
 	g_object_unref(portname);
 }
