@@ -1,6 +1,5 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * callbacks.c
+ * kelp_app.h
  * Copyright (C) Russell Sim 2011 <russell.sim@gmail.com>
  *
  * kelp is free software: you can redistribute it and/or modify it
@@ -17,15 +16,13 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
+#include <gtk/gtk.h>
 
-#include "callbacks.h"
-
-
-void
-destroy (GtkWidget *widget, gpointer data)
+/* store the widgets which may need to be accessed in a typedef struct */
+typedef struct
 {
-	gtk_main_quit ();
-}
+        GtkWidget               *window;
+        GtkWidget               *prefs;
+        GtkComboBox               *computer_type;
+} Kelp;
+

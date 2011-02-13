@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 ## Created by Anjuta
+include $(top_srcdir)/flymake.mk
 
 uidir = $(datadir)/kelp/ui
 ui_DATA = kelp.ui
@@ -20,6 +21,7 @@ bin_PROGRAMS = kelp
 kelp_SOURCES = \
 	callbacks.c \
 	callbacks.h \
+	kelp_prefs.c \
 	main.c
 
 kelp_LDFLAGS = \
