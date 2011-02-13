@@ -24,7 +24,14 @@
 #include "kelp-app.h"
 #include "kelp-computer-import.h"
 
-#define KELP_STATE_FILE_LOCATION "kelp"
+#define KELP_PREFERENCES_FILE_LOCATION "kelp"
+
+// The GtkListStore columns
+enum
+  {
+    COL_COMPUTER_T = 0,
+    NUM_COLS
+};
 
 
 gchar *
@@ -39,7 +46,7 @@ kelp_get_user_config_dir (void)
 
 
 static gchar *
-get_state_filename (void)
+get_preferences_filename (void)
 {
   gchar *config_dir;
   gchar *filename = NULL;
@@ -49,7 +56,7 @@ get_state_filename (void)
   if (config_dir != NULL)
     {
       filename = g_build_filename (config_dir,
-				   KELP_STATE_FILE_LOCATION,
+				   KELP_PREFERENCES_FILE_LOCATION,
 				   NULL);
       g_free (config_dir);
     }
@@ -59,7 +66,7 @@ get_state_filename (void)
 
 
 static GKeyFile *
-get_kelp_state_file (void)
+get_kelp_preferences_file (void)
 {
   static GKeyFile *state_file = NULL;
 
@@ -70,7 +77,7 @@ get_kelp_state_file (void)
 
       state_file = g_key_file_new ();
 
-      filename = get_state_filename ();
+      filename = get_preferences_filename ();
 
       if (!g_key_file_load_from_file (state_file,
 				      filename,
@@ -94,9 +101,43 @@ get_kelp_state_file (void)
 }
 
 
-void on_preferences_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp);
-void on_close_button_clicked (GtkMenuItem *menuitem, Kelp *kelp);
-void on_kelp_preferences_show (GtkMenuItem *menuitem, Kelp *kelp);
+void
+save_kelp_preferences_file (GKeyFile *file)
+{
+	gchar *data;
+	gsize size;
+	gchar *filename;
+	GError *p_error = NULL;
+	gboolean success;
+
+	data = g_key_file_to_data (file, &size, &p_error);
+
+	if (!data)
+		{
+			/* Error, exit program. */
+			g_warning ("Impossible to convert data to string : %s\n",
+					   p_error->message);
+			g_error_free (p_error);
+			g_key_file_free (file);
+			return;
+		}
+	g_mkdir_with_parents (kelp_get_user_config_dir(), 0755);
+	filename = get_preferences_filename ();
+	success = g_file_set_contents (filename, data, size,  &p_error);
+	g_free (data);
+
+	if (!success)
+		{
+			g_warning ("Impossible to write config file : %s\n",
+					   p_error->message);
+			g_error_free (p_error);
+			g_key_file_free (file);
+			return;
+		}
+
+	g_key_file_free (file);
+}
+
 
 void
 on_preferences_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
@@ -106,44 +147,61 @@ on_preferences_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 
 
 void
-on_close_button_clicked (GtkMenuItem *menuitem, Kelp *kelp)
+on_close_button_clicked (GtkButton *button, Kelp *kelp)
 {
   gtk_widget_hide (kelp->prefs);
 }
 
-enum
-  {
-    COL_COMPUTER_T = 0,
-    NUM_COLS
-};
 
 
 void
 on_kelp_preferences_show (GtkMenuItem *menuitem, Kelp *kelp)
 {
-  GtkListStore *computer_types;
-  GtkCellRenderer *cell;
-  GtkTreeIter   iter;
-  int i, length;
+	GtkListStore *computer_types;
+	GtkCellRenderer *cell;
+	GtkTreeIter   iter;
+	int i, length;
 
-  length = sizeof(g_backends) / sizeof(backend_table_t);
-  computer_types = gtk_list_store_new (NUM_COLS,
-				       G_TYPE_STRING);
-  for (i=0; i < length; i++)
-    {
-      gtk_list_store_append(computer_types, &iter);
+	length = sizeof(g_backends) / sizeof(backend_table_t);
+	computer_types = gtk_list_store_new (NUM_COLS,
+										 G_TYPE_STRING);
+	for (i=0; i < length; i++)
+		{
+			gtk_list_store_append (computer_types, &iter);
 
-      gtk_list_store_set (computer_types, &iter,
-			  COL_COMPUTER_T, g_backends[i].name,
-			  -1);
+			gtk_list_store_set (computer_types, &iter,
+								COL_COMPUTER_T, g_backends[i].name,
+								-1);
 
-    }
-  gtk_combo_box_set_model(kelp->computer_type, (GtkTreeModel*)computer_types);
-  g_object_unref( G_OBJECT( computer_types ) );
+		}
+	gtk_combo_box_set_model (kelp->computer_type, (GtkTreeModel*)computer_types);
+	g_object_unref (G_OBJECT(computer_types));
 
-  cell = gtk_cell_renderer_text_new();
-  gtk_cell_layout_pack_start( GTK_CELL_LAYOUT( kelp->computer_type ), cell, FALSE );
-  gtk_cell_layout_set_attributes( GTK_CELL_LAYOUT( kelp->computer_type ), cell,
-				  "text", COL_COMPUTER_T,
-				  NULL );
+	cell = gtk_cell_renderer_text_new();
+	gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(kelp->computer_type), cell, FALSE );
+	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT(kelp->computer_type), cell,
+									"text", COL_COMPUTER_T,
+									NULL );
+}
+
+void
+on_prefs_comptype_changed (GtkComboBox *combobox, Kelp *kelp)
+{
+	GtkTreeIter iter;
+
+	if (gtk_combo_box_get_active_iter (combobox, &iter))
+		{
+			GKeyFile *file;
+			GtkTreeModel *model;
+			gchar *computer_type;
+
+			file = get_kelp_preferences_file();
+			model = gtk_combo_box_get_model (combobox);
+			gtk_tree_model_get (model, &iter,
+								COL_COMPUTER_T, &computer_type,
+								-1);
+			if (!g_key_file_has_group(file, "Computer"))
+			g_key_file_set_string (file, "Computer", "Type", computer_type);
+			save_kelp_preferences_file (file);
+		}
 }

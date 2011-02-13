@@ -5,7 +5,7 @@
   <object class="GtkTreeStore" id="logentries"/>
   <object class="GtkWindow" id="window">
     <property name="visible">True</property>
-    <property name="title" translatable="yes">window</property>
+    <property name="title" translatable="yes">Kelp</property>
     <property name="default_width">500</property>
     <property name="default_height">400</property>
     <signal name="destroy" handler="destroy"/>
@@ -256,6 +256,7 @@
                 <child>
                   <object class="GtkComboBox" id="prefs_comptype">
                     <property name="visible">True</property>
+                    <signal name="changed" handler="on_prefs_comptype_changed"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
