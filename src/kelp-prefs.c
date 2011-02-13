@@ -21,6 +21,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include "kelp-prefs.h"
 #include "kelp-app.h"
 #include "kelp-computer-import.h"
 

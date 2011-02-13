@@ -52,7 +52,7 @@
 #endif
 
 
-
+#include "kelp-prefs.h"
 #include "callbacks.h"
 #include "kelp-app.h"
 
@@ -95,13 +95,13 @@ void on_about_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 }
 
 
-
 GtkWidget*
 create_window (Kelp *kelp)
 {
 	GtkWidget *window;
 	GtkBuilder *builder;
 	GError* error = NULL;
+	GKeyFile *pref_file;
 
 	builder = gtk_builder_new ();
 	if (!gtk_builder_add_from_file (builder, UI_FILE, &error))
@@ -117,8 +117,34 @@ create_window (Kelp *kelp)
 	kelp->computer_type = GTK_COMBO_BOX (gtk_builder_get_object (builder, "prefs_comptype"));
 
 	kelp->window = window;
-
 	g_object_unref (builder);
+
+	// Load Preferences from file
+	pref_file = get_kelp_preferences_file();
+	if (g_key_file_has_group (pref_file, "computer"))
+		{
+			gchar *computer;
+			gchar *port;
+			computer = g_key_file_get_string (pref_file, "computer", "type", &error);
+			if (computer)
+				{
+					kelp->computer = computer;
+				}
+			else
+				{
+					// TODO HANDLE ERROR
+				}
+
+			port = g_key_file_get_string (pref_file, "computer", "port", &error);
+			if (!port)
+				{
+					kelp->port = port;
+				}
+			else
+				{
+					// TODO HANDLE ERROR
+				}
+		}
 
 	return window;
 }
