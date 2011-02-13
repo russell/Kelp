@@ -153,7 +153,6 @@ on_close_button_clicked (GtkButton *button, Kelp *kelp)
 }
 
 
-
 void
 on_kelp_preferences_show (GtkMenuItem *menuitem, Kelp *kelp)
 {
@@ -183,6 +182,7 @@ on_kelp_preferences_show (GtkMenuItem *menuitem, Kelp *kelp)
 									"text", COL_COMPUTER_T,
 									NULL );
 }
+
 
 void
 on_prefs_comptype_changed (GtkComboBox *combobox, Kelp *kelp)
