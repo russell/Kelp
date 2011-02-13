@@ -101,7 +101,6 @@ create_window (Kelp *kelp)
 	GtkWidget *window;
 	GtkBuilder *builder;
 	GError* error = NULL;
-	GKeyFile *pref_file;
 
 	builder = gtk_builder_new ();
 	if (!gtk_builder_add_from_file (builder, UI_FILE, &error))
@@ -119,37 +118,7 @@ create_window (Kelp *kelp)
 
 	kelp->window = window;
 	g_object_unref (builder);
-
-	// Load Preferences from file
-	pref_file = get_kelp_preferences_file();
-	if (g_key_file_has_group (pref_file, "computer"))
-		{
-			gchar *computer;
-			gchar *port;
-			computer = g_key_file_get_string (pref_file, "computer", "type", &error);
-			if (computer)
-				{
-					kelp->computer = computer;
-				}
-			else
-				{
-					// TODO HANDLE ERROR
-				}
-
-			port = g_key_file_get_string (pref_file, "computer", "port", &error);
-			if (port)
-				{
-					gtk_file_chooser_set_file (GTK_FILE_CHOOSER(kelp->computer_port),
-											   g_file_new_for_path (port), &error);
-				}
-			else
-				{
-					kelp->computer_port = NULL;
-					g_warning ("%s", error->message);
-					g_error_free (error);
-				}
-		}
-
+	kelp_intitialise_preferences(kelp);
 	return window;
 }
 

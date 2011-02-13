@@ -21,7 +21,8 @@
 #define __KELP_PREFS_H__
 
 #include <glib.h>
+#include "kelp-app.h"
 
-GKeyFile* get_kelp_preferences_file (void);
+void kelp_intitialise_preferences (Kelp *kelp);
 
 #endif /* __KELP_PREFS_H__ */

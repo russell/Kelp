@@ -66,10 +66,10 @@ get_preferences_filename (void)
 }
 
 
-GKeyFile *
+static GKeyFile *
 get_kelp_preferences_file (void)
 {
-  static GKeyFile *state_file = NULL;
+  GKeyFile *state_file = NULL;
 
   if (state_file == NULL)
     {
@@ -141,6 +141,84 @@ save_kelp_preferences_file (GKeyFile *file)
 
 
 void
+kelp_intitialise_preferences (Kelp *kelp)
+{
+	GtkListStore *computer_types;
+	GtkCellRenderer *cell;
+	GtkTreeIter   iter;
+	GKeyFile *pref_file;
+	GError* error = NULL;
+	int i, length;
+
+	// Load Preferences from file
+	pref_file = get_kelp_preferences_file();
+	if (g_key_file_has_group (pref_file, "computer"))
+		{
+			gchar *computer;
+			gchar *port;
+			/* load values from config file */
+			computer = g_key_file_get_string (pref_file, "computer", "type", &error);
+			port = g_key_file_get_string (pref_file, "computer", "port", &error);
+			g_key_file_free (pref_file);
+			printf ("%s\n", computer);
+
+			/* set the computer type */
+			if (computer)
+				{
+
+					kelp->computer = computer;
+				}
+			else
+				{
+					kelp->computer = NULL;
+					g_warning ("%s", error->message);
+					g_error_free (error);
+				}
+
+			length = sizeof(g_backends) / sizeof(backend_table_t);
+			computer_types = gtk_list_store_new (NUM_COLS,
+												 G_TYPE_STRING);
+			gtk_combo_box_set_model (kelp->computer_type, (GtkTreeModel*)computer_types);
+			for (i=0; i < length; i++)
+				{
+					gtk_list_store_append (computer_types, &iter);
+
+					gtk_list_store_set (computer_types, &iter,
+										COL_COMPUTER_T, g_backends[i].name,
+										-1);
+					if (!g_ascii_strcasecmp(computer, g_backends[i].name)) {
+						gtk_combo_box_set_active_iter(kelp->computer_type, &iter);
+					}
+
+				}
+
+			g_object_unref (G_OBJECT(computer_types));
+
+			cell = gtk_cell_renderer_text_new();
+			gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(kelp->computer_type), cell, FALSE );
+			gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT(kelp->computer_type), cell,
+											"text", COL_COMPUTER_T,
+											NULL );
+
+
+
+			/* set the port */
+			if (port)
+				{
+					gtk_file_chooser_set_file (GTK_FILE_CHOOSER(kelp->computer_port),
+											   g_file_new_for_path (port), &error);
+				}
+			else
+				{
+					kelp->computer_port = NULL;
+					g_warning ("!!!%s", error->message);
+					g_error_free (error);
+				}
+		}
+
+}
+
+void
 on_preferences_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 {
   gtk_widget_show (kelp->prefs);
@@ -157,31 +235,7 @@ on_close_button_clicked (GtkButton *button, Kelp *kelp)
 void
 on_kelp_preferences_show (GtkMenuItem *menuitem, Kelp *kelp)
 {
-	GtkListStore *computer_types;
-	GtkCellRenderer *cell;
-	GtkTreeIter   iter;
-	int i, length;
 
-	length = sizeof(g_backends) / sizeof(backend_table_t);
-	computer_types = gtk_list_store_new (NUM_COLS,
-										 G_TYPE_STRING);
-	for (i=0; i < length; i++)
-		{
-			gtk_list_store_append (computer_types, &iter);
-
-			gtk_list_store_set (computer_types, &iter,
-								COL_COMPUTER_T, g_backends[i].name,
-								-1);
-
-		}
-	gtk_combo_box_set_model (kelp->computer_type, (GtkTreeModel*)computer_types);
-	g_object_unref (G_OBJECT(computer_types));
-
-	cell = gtk_cell_renderer_text_new();
-	gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(kelp->computer_type), cell, FALSE );
-	gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT(kelp->computer_type), cell,
-									"text", COL_COMPUTER_T,
-									NULL );
 }
 
 
