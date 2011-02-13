@@ -70,34 +70,29 @@ static GKeyFile *
 get_kelp_preferences_file (void)
 {
   GKeyFile *state_file = NULL;
+  gchar *filename;
+  GError *err = NULL;
 
-  if (state_file == NULL)
-    {
-      gchar *filename;
-      GError *err = NULL;
+  state_file = g_key_file_new ();
 
-      state_file = g_key_file_new ();
+  filename = get_preferences_filename ();
 
-      filename = get_preferences_filename ();
+  if (!g_key_file_load_from_file (state_file,
+								  filename,
+								  G_KEY_FILE_NONE,
+								  &err))
+	  {
+		  if (err->domain != G_FILE_ERROR ||
+			  err->code != G_FILE_ERROR_NOENT)
+			  {
+				  g_warning ("Could not load kelp state file: %s\n",
+							 err->message);
+			  }
 
-      if (!g_key_file_load_from_file (state_file,
-				      filename,
-				      G_KEY_FILE_NONE,
-				      &err))
-	{
-	  if (err->domain != G_FILE_ERROR ||
-	      err->code != G_FILE_ERROR_NOENT)
-	    {
-	      g_warning ("Could not load kelp state file: %s\n",
-			 err->message);
-	    }
+		  g_error_free (err);
+	  }
 
-	  g_error_free (err);
-	}
-
-      g_free (filename);
-    }
-
+  g_free (filename);
   return state_file;
 }
 
