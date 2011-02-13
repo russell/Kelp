@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * kelp_prefs.c
+ * kelp-prefs.c
  * Copyright (C) Russell Sim 2011 <russell.sim@gmail.com>
  *
  * kelp is free software: you can redistribute it and/or modify it
