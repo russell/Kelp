@@ -19,9 +19,13 @@ AM_CFLAGS =\
 bin_PROGRAMS = kelp
 
 kelp_SOURCES = \
+	kelp-app.h \
 	callbacks.c \
 	callbacks.h \
+	kelp-computer-import.h \
+	kelp-computer-import.c \
 	kelp-prefs.c \
+	kelp-prefs.h \
 	main.c
 
 kelp_LDFLAGS = \
