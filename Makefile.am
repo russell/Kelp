@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
-## Created by Anjuta
 
-SUBDIRS = src po
+
+SUBDIRS = src po tests
 
 kelpdocdir = ${prefix}/doc/kelp
 kelpdoc_DATA = \

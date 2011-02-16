@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dives>
+  <dive>
+    <number>1</number>
+    <size>535</size>
+    <fingerprint>0B1E2AD8070B17</fingerprint>
+    <datetime>2008-11-23 11:30:42</datetime>
+    <divetime>36:00</divetime>
+    <maxdepth>13.69</maxdepth>
+    <gasmix>
+      <he>0.0</he>
+      <o2>21.0</o2>
+      <n2>79.0</n2>
+    </gasmix>
+    <gasmix>
+      <he>0.0</he>
+      <o2>21.0</o2>
+      <n2>79.0</n2>
+    </gasmix>
+    <gasmix>
+      <he>0.0</he>
+      <o2>21.0</o2>
+      <n2>79.0</n2>
+    </gasmix>
+    <sample>
+      <time>00:00</time>
+      <depth>1.41</depth>
+      <pressure tank="0">135.25</pressure>
+      <temperature>30.00</temperature>
+    </sample>
+    <sample>
+      <time>00:20</time>
+      <depth>3.08</depth>
+      <pressure tank="0">134.50</pressure>
+    </sample>
+    <sample>
+      <time>00:40</time>
+      <depth>3.47</depth>
+      <pressure tank="0">133.75</pressure>
+    </sample>
+    <sample>
+      <time>01:00</time>
+      <depth>5.46</depth>
+      <pressure tank="0">132.25</pressure>
+    </sample>
+    <sample>
+      <time>01:20</time>
+      <depth>6.20</depth>
+      <pressure tank="0">132.25</pressure>
+    </sample>
+    <sample>
+      <time>01:40</time>
+      <depth>5.97</depth>
+      <pressure tank="0">131.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>02:00</time>
+      <depth>5.43</depth>
+      <pressure tank="0">130.75</pressure>
+    </sample>
+    <sample>
+      <time>02:20</time>
+      <depth>5.57</depth>
+      <pressure tank="0">130.00</pressure>
+    </sample>
+    <sample>
+      <time>02:40</time>
+      <depth>5.30</depth>
+      <pressure tank="0">129.25</pressure>
+    </sample>
+    <sample>
+      <time>03:00</time>
+      <depth>6.07</depth>
+      <pressure tank="0">128.50</pressure>
+    </sample>
+    <sample>
+      <time>03:20</time>
+      <depth>6.05</depth>
+      <pressure tank="0">127.75</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>03:40</time>
+      <depth>5.93</depth>
+      <pressure tank="0">127.00</pressure>
+    </sample>
+    <sample>
+      <time>04:00</time>
+      <depth>5.42</depth>
+      <pressure tank="0">127.00</pressure>
+    </sample>
+    <sample>
+      <time>04:20</time>
+      <depth>4.44</depth>
+      <pressure tank="0">126.25</pressure>
+    </sample>
+    <sample>
+      <time>04:40</time>
+      <depth>5.80</depth>
+      <pressure tank="0">125.50</pressure>
+    </sample>
+    <sample>
+      <time>05:00</time>
+      <depth>7.42</depth>
+      <pressure tank="0">124.75</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>05:20</time>
+      <depth>8.12</depth>
+      <pressure tank="0">124.00</pressure>
+    </sample>
+    <sample>
+      <time>05:40</time>
+      <depth>9.98</depth>
+      <pressure tank="0">123.25</pressure>
+    </sample>
+    <sample>
+      <time>06:00</time>
+      <depth>11.86</depth>
+      <pressure tank="0">122.50</pressure>
+    </sample>
+    <sample>
+      <time>06:20</time>
+      <depth>11.66</depth>
+      <pressure tank="0">121.75</pressure>
+    </sample>
+    <sample>
+      <time>06:40</time>
+      <depth>11.18</depth>
+      <pressure tank="0">121.00</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>07:00</time>
+      <depth>10.66</depth>
+      <pressure tank="0">120.25</pressure>
+    </sample>
+    <sample>
+      <time>07:20</time>
+      <depth>10.59</depth>
+      <pressure tank="0">119.50</pressure>
+    </sample>
+    <sample>
+      <time>07:40</time>
+      <depth>11.04</depth>
+      <pressure tank="0">118.75</pressure>
+    </sample>
+    <sample>
+      <time>08:00</time>
+      <depth>11.39</depth>
+      <pressure tank="0">118.00</pressure>
+    </sample>
+    <sample>
+      <time>08:20</time>
+      <depth>11.85</depth>
+      <pressure tank="0">117.25</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>08:40</time>
+      <depth>12.57</depth>
+      <pressure tank="0">116.50</pressure>
+    </sample>
+    <sample>
+      <time>09:00</time>
+      <depth>10.88</depth>
+      <pressure tank="0">115.75</pressure>
+    </sample>
+    <sample>
+      <time>09:20</time>
+      <depth>9.86</depth>
+      <pressure tank="0">115.00</pressure>
+    </sample>
+    <sample>
+      <time>09:40</time>
+      <depth>9.43</depth>
+      <pressure tank="0">115.00</pressure>
+    </sample>
+    <sample>
+      <time>10:00</time>
+      <depth>9.10</depth>
+      <pressure tank="0">113.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>10:20</time>
+      <depth>9.25</depth>
+      <pressure tank="0">113.50</pressure>
+    </sample>
+    <sample>
+      <time>10:40</time>
+      <depth>9.52</depth>
+      <pressure tank="0">112.75</pressure>
+    </sample>
+    <sample>
+      <time>11:00</time>
+      <depth>9.67</depth>
+      <pressure tank="0">112.00</pressure>
+    </sample>
+    <sample>
+      <time>11:20</time>
+      <depth>9.12</depth>
+      <pressure tank="0">111.25</pressure>
+    </sample>
+    <sample>
+      <time>11:40</time>
+      <depth>7.40</depth>
+      <pressure tank="0">110.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>12:00</time>
+      <depth>7.10</depth>
+      <pressure tank="0">109.75</pressure>
+    </sample>
+    <sample>
+      <time>12:20</time>
+      <depth>7.14</depth>
+      <pressure tank="0">109.00</pressure>
+    </sample>
+    <sample>
+      <time>12:40</time>
+      <depth>6.50</depth>
+      <pressure tank="0">108.25</pressure>
+    </sample>
+    <sample>
+      <time>13:00</time>
+      <depth>8.56</depth>
+      <pressure tank="0">107.50</pressure>
+    </sample>
+    <sample>
+      <time>13:20</time>
+      <depth>7.80</depth>
+      <pressure tank="0">106.75</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>13:40</time>
+      <depth>8.05</depth>
+      <pressure tank="0">106.00</pressure>
+    </sample>
+    <sample>
+      <time>14:00</time>
+      <depth>8.91</depth>
+      <pressure tank="0">105.25</pressure>
+    </sample>
+    <sample>
+      <time>14:20</time>
+      <depth>9.34</depth>
+      <pressure tank="0">104.50</pressure>
+    </sample>
+    <sample>
+      <time>14:40</time>
+      <depth>9.00</depth>
+      <pressure tank="0">103.75</pressure>
+    </sample>
+    <sample>
+      <time>15:00</time>
+      <depth>8.63</depth>
+      <pressure tank="0">103.75</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>15:20</time>
+      <depth>9.75</depth>
+      <pressure tank="0">103.00</pressure>
+    </sample>
+    <sample>
+      <time>15:40</time>
+      <depth>9.48</depth>
+      <pressure tank="0">102.25</pressure>
+    </sample>
+    <sample>
+      <time>16:00</time>
+      <depth>9.87</depth>
+      <pressure tank="0">100.75</pressure>
+    </sample>
+    <sample>
+      <time>16:20</time>
+      <depth>10.20</depth>
+      <pressure tank="0">100.75</pressure>
+    </sample>
+    <sample>
+      <time>16:40</time>
+      <depth>11.78</depth>
+      <pressure tank="0">100.00</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>17:00</time>
+      <depth>13.59</depth>
+      <pressure tank="0">99.25</pressure>
+    </sample>
+    <sample>
+      <time>17:20</time>
+      <depth>13.33</depth>
+      <pressure tank="0">97.75</pressure>
+    </sample>
+    <sample>
+      <time>17:40</time>
+      <depth>12.95</depth>
+      <pressure tank="0">97.75</pressure>
+    </sample>
+    <sample>
+      <time>18:00</time>
+      <depth>11.69</depth>
+      <pressure tank="0">97.00</pressure>
+    </sample>
+    <sample>
+      <time>18:20</time>
+      <depth>11.69</depth>
+      <pressure tank="0">95.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>18:40</time>
+      <depth>11.26</depth>
+      <pressure tank="0">95.50</pressure>
+    </sample>
+    <sample>
+      <time>19:00</time>
+      <depth>11.95</depth>
+      <pressure tank="0">94.75</pressure>
+    </sample>
+    <sample>
+      <time>19:20</time>
+      <depth>11.44</depth>
+      <pressure tank="0">94.00</pressure>
+    </sample>
+    <sample>
+      <time>19:40</time>
+      <depth>10.44</depth>
+      <pressure tank="0">93.25</pressure>
+    </sample>
+    <sample>
+      <time>20:00</time>
+      <depth>10.09</depth>
+      <pressure tank="0">92.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>20:20</time>
+      <depth>9.50</depth>
+      <pressure tank="0">91.75</pressure>
+    </sample>
+    <sample>
+      <time>20:40</time>
+      <depth>10.68</depth>
+      <pressure tank="0">91.00</pressure>
+    </sample>
+    <sample>
+      <time>21:00</time>
+      <depth>10.35</depth>
+      <pressure tank="0">90.25</pressure>
+    </sample>
+    <sample>
+      <time>21:20</time>
+      <depth>10.24</depth>
+      <pressure tank="0">89.50</pressure>
+    </sample>
+    <sample>
+      <time>21:40</time>
+      <depth>9.80</depth>
+      <pressure tank="0">89.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>22:00</time>
+      <depth>10.47</depth>
+      <pressure tank="0">88.00</pressure>
+    </sample>
+    <sample>
+      <time>22:20</time>
+      <depth>10.27</depth>
+      <pressure tank="0">88.00</pressure>
+    </sample>
+    <sample>
+      <time>22:40</time>
+      <depth>10.34</depth>
+      <pressure tank="0">86.50</pressure>
+    </sample>
+    <sample>
+      <time>23:00</time>
+      <depth>10.13</depth>
+      <pressure tank="0">85.75</pressure>
+    </sample>
+    <sample>
+      <time>23:20</time>
+      <depth>9.82</depth>
+      <pressure tank="0">85.00</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>23:40</time>
+      <depth>8.97</depth>
+      <pressure tank="0">84.25</pressure>
+    </sample>
+    <sample>
+      <time>24:00</time>
+      <depth>9.05</depth>
+      <pressure tank="0">83.50</pressure>
+    </sample>
+    <sample>
+      <time>24:20</time>
+      <depth>8.68</depth>
+      <pressure tank="0">82.75</pressure>
+    </sample>
+    <sample>
+      <time>24:40</time>
+      <depth>8.64</depth>
+      <pressure tank="0">82.75</pressure>
+    </sample>
+    <sample>
+      <time>25:00</time>
+      <depth>9.10</depth>
+      <pressure tank="0">82.00</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>25:20</time>
+      <depth>8.68</depth>
+      <pressure tank="0">81.25</pressure>
+    </sample>
+    <sample>
+      <time>25:40</time>
+      <depth>9.62</depth>
+      <pressure tank="0">81.25</pressure>
+    </sample>
+    <sample>
+      <time>26:00</time>
+      <depth>8.93</depth>
+      <pressure tank="0">80.50</pressure>
+    </sample>
+    <sample>
+      <time>26:20</time>
+      <depth>9.74</depth>
+      <pressure tank="0">79.75</pressure>
+    </sample>
+    <sample>
+      <time>26:40</time>
+      <depth>9.05</depth>
+      <pressure tank="0">79.75</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>27:00</time>
+      <depth>8.44</depth>
+      <pressure tank="0">79.00</pressure>
+    </sample>
+    <sample>
+      <time>27:20</time>
+      <depth>8.14</depth>
+      <pressure tank="0">79.00</pressure>
+    </sample>
+    <sample>
+      <time>27:40</time>
+      <depth>7.21</depth>
+      <pressure tank="0">78.25</pressure>
+    </sample>
+    <sample>
+      <time>28:00</time>
+      <depth>6.88</depth>
+      <pressure tank="0">77.50</pressure>
+    </sample>
+    <sample>
+      <time>28:20</time>
+      <depth>4.36</depth>
+      <pressure tank="0">77.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>28:40</time>
+      <depth>3.57</depth>
+      <pressure tank="0">76.75</pressure>
+    </sample>
+    <sample>
+      <time>29:00</time>
+      <depth>2.90</depth>
+      <pressure tank="0">76.75</pressure>
+    </sample>
+    <sample>
+      <time>29:20</time>
+      <depth>3.17</depth>
+      <pressure tank="0">76.00</pressure>
+    </sample>
+    <sample>
+      <time>29:40</time>
+      <depth>3.88</depth>
+      <pressure tank="0">75.25</pressure>
+    </sample>
+    <sample>
+      <time>30:00</time>
+      <depth>5.07</depth>
+      <pressure tank="0">74.50</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>30:20</time>
+      <depth>4.18</depth>
+      <pressure tank="0">74.50</pressure>
+    </sample>
+    <sample>
+      <time>30:40</time>
+      <depth>5.69</depth>
+      <pressure tank="0">73.75</pressure>
+    </sample>
+    <sample>
+      <time>31:00</time>
+      <depth>5.91</depth>
+      <pressure tank="0">73.00</pressure>
+    </sample>
+    <sample>
+      <time>31:20</time>
+      <depth>5.97</depth>
+      <pressure tank="0">73.00</pressure>
+    </sample>
+    <sample>
+      <time>31:40</time>
+      <depth>6.02</depth>
+      <pressure tank="0">72.25</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>32:00</time>
+      <depth>6.33</depth>
+      <pressure tank="0">71.50</pressure>
+    </sample>
+    <sample>
+      <time>32:20</time>
+      <depth>5.80</depth>
+      <pressure tank="0">71.50</pressure>
+    </sample>
+    <sample>
+      <time>32:40</time>
+      <depth>6.00</depth>
+      <pressure tank="0">70.75</pressure>
+    </sample>
+    <sample>
+      <time>33:00</time>
+      <depth>5.44</depth>
+      <pressure tank="0">70.75</pressure>
+    </sample>
+    <sample>
+      <time>33:20</time>
+      <depth>4.72</depth>
+      <pressure tank="0">70.00</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>33:40</time>
+      <depth>5.49</depth>
+      <pressure tank="0">69.25</pressure>
+    </sample>
+    <sample>
+      <time>34:00</time>
+      <depth>6.03</depth>
+      <pressure tank="0">68.50</pressure>
+    </sample>
+    <sample>
+      <time>34:20</time>
+      <depth>6.26</depth>
+      <pressure tank="0">68.50</pressure>
+    </sample>
+    <sample>
+      <time>34:40</time>
+      <depth>6.04</depth>
+      <pressure tank="0">67.75</pressure>
+    </sample>
+    <sample>
+      <time>35:00</time>
+      <depth>5.51</depth>
+      <pressure tank="0">67.00</pressure>
+      <temperature>28.00</temperature>
+    </sample>
+    <sample>
+      <time>35:20</time>
+      <depth>5.77</depth>
+      <pressure tank="0">67.00</pressure>
+    </sample>
+    <sample>
+      <time>35:40</time>
+      <depth>4.87</depth>
+      <pressure tank="0">66.25</pressure>
+    </sample>
+    <sample>
+      <time>36:00</time>
+      <depth>3.12</depth>
+      <pressure tank="0">65.50</pressure>
+      <event type="9" time="17" flags="0" value="0">surface</event>
+    </sample>
+  </dive>
+</dives>

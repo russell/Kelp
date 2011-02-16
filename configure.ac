@@ -26,7 +26,10 @@ IT_PROG_INTLTOOL([0.35.0])
 
 AM_PROG_LIBTOOL
 
-
+# Check for check libraries.
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4],,
+  AC_MSG_WARN([Check not found; cannot run unit tests!]))
+AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
 
 PKG_CHECK_MODULES(KELP, [gtk+-2.0 >= 2.16 ])
 
@@ -37,4 +40,5 @@ AC_OUTPUT([
 Makefile
 src/Makefile
 po/Makefile.in
+tests/Makefile
 ])
