@@ -10,9 +10,6 @@ AM_MAINTAINER_MODE
 
 AC_PROG_CC
 
-
-
-
 dnl ***************************************************************************
 dnl Internatinalization
 dnl ***************************************************************************
@@ -22,8 +19,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 AM_GLIB_GNU_GETTEXT
 IT_PROG_INTLTOOL([0.35.0])
 
-
-
 AM_PROG_LIBTOOL
 
 # Check for check libraries.
@@ -32,8 +27,6 @@ PKG_CHECK_MODULES([CHECK], [check >= 0.9.4],,
 AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
 
 PKG_CHECK_MODULES(KELP, [gtk+-2.0 >= 2.16 ])
-
-
 
 
 AC_OUTPUT([

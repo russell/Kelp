@@ -23,7 +23,6 @@
 
 #include "callbacks.h"
 
-
 void
 destroy (GtkWidget *widget, gpointer data)
 {
