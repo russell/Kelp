@@ -56,6 +56,7 @@
 #include "callbacks.h"
 #include "kelp-app.h"
 
+
 /* For testing propose use the local (not installed) ui file */
 /* #define UI_FILE PACKAGE_DATA_DIR"/kelp/ui/kelp.ui" */
 #define UI_FILE "src/kelp.ui"

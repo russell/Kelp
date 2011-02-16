@@ -1,6 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 8; tab-width: 8 -*- */
 /*
- * kelp_app.h
+ * kelp-app.h
  * Copyright (C) 2011 Russell Sim <russell.sim@gmail.com>
  *
  * kelp is free software: you can redistribute it and/or modify it
@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef __KELP_APP_H__
 #define __KELP_APP_H__
 
@@ -24,7 +25,7 @@
 /* store the widgets which may need to be accessed in a typedef struct */
 typedef struct
 {
-	GtkWidget *window;
+        GtkWidget *window;
 	GtkWidget *prefs;
 	GtkComboBox *computer_type;
 	GtkFileChooserButton *computer_port;

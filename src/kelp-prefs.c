@@ -25,6 +25,7 @@
 #include "kelp-app.h"
 #include "kelp-computer-import.h"
 
+
 #define KELP_PREFERENCES_FILE_LOCATION "kelp"
 
 // The GtkListStore columns
@@ -70,29 +71,34 @@ static GKeyFile *
 get_kelp_preferences_file (void)
 {
   GKeyFile *state_file = NULL;
-  gchar *filename;
-  GError *err = NULL;
 
-  state_file = g_key_file_new ();
+  if (state_file == NULL)
+    {
+      gchar *filename;
+      GError *err = NULL;
 
-  filename = get_preferences_filename ();
+      state_file = g_key_file_new ();
 
-  if (!g_key_file_load_from_file (state_file,
-								  filename,
-								  G_KEY_FILE_NONE,
-								  &err))
-	  {
-		  if (err->domain != G_FILE_ERROR ||
-			  err->code != G_FILE_ERROR_NOENT)
-			  {
-				  g_warning ("Could not load kelp state file: %s\n",
-							 err->message);
-			  }
+      filename = get_preferences_filename ();
 
-		  g_error_free (err);
-	  }
+      if (!g_key_file_load_from_file (state_file,
+				      filename,
+				      G_KEY_FILE_NONE,
+				      &err))
+	{
+	  if (err->domain != G_FILE_ERROR ||
+	      err->code != G_FILE_ERROR_NOENT)
+	    {
+	      g_warning ("Could not load kelp state file: %s\n",
+			 err->message);
+	    }
 
-  g_free (filename);
+	  g_error_free (err);
+	}
+
+      g_free (filename);
+    }
+
   return state_file;
 }
 
