@@ -128,10 +128,9 @@ int
 main (int argc, char *argv[])
 {
  	GtkWidget *window;
-	Kelp *kelp;
 
-	/* allocate the memory needed by our TutorialTextEditor struct */
-	kelp = g_slice_new (Kelp);
+	/* allocate the memory needed by our Kelp struct */
+	GLOBALS = g_slice_new0 (Kelp);
 
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -142,12 +141,12 @@ main (int argc, char *argv[])
 	gtk_set_locale ();
 	gtk_init (&argc, &argv);
 
-	window = create_window (kelp);
+	window = create_window (GLOBALS);
 	gtk_widget_show (window);
 	gtk_main ();
 
-	/* free memory we allocated for TutorialTextEditor struct */
-	g_slice_free (Kelp, kelp);
+	/* free memory we allocated for Kelp struct */
+	g_slice_free (Kelp, GLOBALS);
 
 	return 0;
 }
