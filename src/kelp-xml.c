@@ -19,33 +19,65 @@
 
 #include "kelp-xml.h"
 
+#define STACKSIZE 10
+
 enum
         {
                 TAG_DIVES,
                 TAG_DIVE,
+                TAG_GASMIX,
                 TAG_SAMPLE,
-                TAG_TIME,
-                TAG_DEPTH,
+                TAG_EVENT,
                 TAG_PRESSURE,
                 TAG_UNKNOWN
         };
 
 
+typedef struct
+{
+        gint size;
+        gint items[STACKSIZE];
+} TagStack;
+
+
+static void
+push_tag(TagStack *ps, int x)
+{
+        if (ps->size == STACKSIZE)
+                {
+                        g_error("XML tag stack overflow\n");
+                        abort();
+                }
+        else
+
+                ps->items[ps->size++] = x;
+
+}
+
+static int
+get_tag(TagStack *ps)
+{
+        return ps->items[ps->size];
+}
+
+static void
+pop_tag(TagStack *ps)
+{
+        if (ps->size == 0)
+                {
+                        g_error("XML tag stack underflow\n");
+                        abort();
+                }
+        else
+                g_debug("size is, %i\n", ps->size);
+                --ps->size;
+}
+
+
 typedef struct _ParseContext ParseContext;
 struct _ParseContext
 {
-/*
-  ParseState state;
-  ParseState prev_state;
-
-  GtkUIManager *self;
-
-  GNode *current;
-
-  guint merge_id;
-*/
-	gdouble	version;
-
+        TagStack tags;
 };
 
 static void
@@ -56,23 +88,100 @@ start_element_handler (GMarkupParseContext *context,
 		       gpointer user_data,
 		       GError **error)
 {
-        gint element;
+        gint i;
+        ParseContext *ctx = user_data;
         g_debug("** start element: %s\n", element_name);
-        if (strcmp(element_name, "dives"))
-                element = TAG_DIVES;
-        else if (strcmp(element_name, "dive"))
-                element = TAG_DIVE;
-        else if (strcmp(element_name, "sample"))
-                element = TAG_SAMPLE;
-        else if (strcmp(element_name, "time"))
-                element = TAG_TIME;
-        else if (strcmp(element_name, "depth"))
-                element = TAG_DEPTH;
-        else if (strcmp(element_name, "pressure"))
-                element = TAG_PRESSURE;
+        if (!strcmp(element_name, "dives"))
+                push_tag(ctx->tags, TAG_DIVES);
+        else if (!strcmp(element_name, "dive"))
+                push_tag(ctx->tags, TAG_DIVE);
+        else if (!strcmp(element_name, "sample"))
+                push_tag(ctx->tags, TAG_SAMPLE);
+        else if (!strcmp(element_name, "pressure"))
+                push_tag(ctx->tags, TAG_PRESSURE);
         else
-                g_debug("Unown tag %s\n", element_name);
-
+                {
+                        push_tag(ctx->tags, TAG_UNKNOWN);
+                        g_debug("Unown tag %s\n", element_name);
+                }
+        /* Find the attributes for the current tag */
+        switch (get_tag(ctx->tags))
+                {
+                case TAG_DIVES:
+                        return;
+                case TAG_DIVE:
+                        for (i = 0; attribute_names[i] != NULL; i++)
+                                {
+                                        if (!strcmp (attribute_names[i], "datetime"))
+                                                {
+                                                        g_debug("Ignoring time, too complex for now %s\n",
+                                                                attribute_values[i]);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "number"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "size"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "fingerprint"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "maxdepth"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else
+                                                {
+                                                        g_debug("Unown attribute %s\n",
+                                                                attribute_values[i]);
+                                                }
+                                }
+                        break;
+                case TAG_SAMPLE:
+                        for (i = 0; attribute_names[i] != NULL; i++)
+                                {
+                                        if (!strcmp (attribute_names[i], "time"))
+                                                {
+                                                        g_debug("Ignoring time, too complex for now %s\n",
+                                                                attribute_values[i]);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "depth"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "temperature"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else if (!strcmp (attribute_names[i], "tank"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else
+                                                {
+                                                        g_debug("Unown attribute %s\n",
+                                                                attribute_values[i]);
+                                                }
+                                }
+                        break;
+                case TAG_PRESSURE:
+                        for (i = 0; attribute_names[i] != NULL; i++)
+                                {
+                                        if (!strcmp (attribute_names[i], "tank"))
+                                                {
+                                                        double d = strtof(attribute_values[i], NULL);
+                                                }
+                                        else
+                                                {
+                                                        g_debug("Unown attribute %s\n",
+                                                                attribute_values[i]);
+                                                }
+                                }
+                        break;
+                }
 }
 
 static void
@@ -82,12 +191,30 @@ text_handler(GMarkupParseContext *context,
              gpointer user_data,
              GError **error)
 {
-        g_debug("** start element: %s\n", text);
+        ParseContext *ctx = user_data;
+        /* Find the attributes for the current tag */
+        switch (get_tag(ctx->tags))
+                {
+                case TAG_DIVES:
+                        return;
+                case TAG_PRESSURE:
+                        g_debug("** pressure node: %s\n", text);
+                }
+}
+
+static void
+end_element_handler (GMarkupParseContext *context,
+		       const gchar *element_name,
+		       gpointer user_data,
+		       GError **error)
+{
+        ParseContext *ctx = user_data;
+        pop_tag(ctx->tags);
 }
 
 static GMarkupParser kelp_parser = {
         start_element_handler,
-        NULL,	//end_element_handler,
+        end_element_handler,	//end_element_handler,
         text_handler, //text_handler,
         NULL,
         NULL  //cleanup
@@ -103,7 +230,7 @@ kelp_load_xml(gchar *filename)
         GError *error = NULL;
         GMarkupParseContext *context;
         gboolean rc;
-
+        ParseContext ctx = { 0 };
         retval = XML_OK;
         if (!g_file_get_contents (filename, &buffer, &length, &error))
                 {
@@ -115,7 +242,7 @@ kelp_load_xml(gchar *filename)
                 {
                         /* then process the buffer */
                         context = g_markup_parse_context_new (&kelp_parser,
-                                                              0, NULL, NULL);
+                                                              0, &ctx, NULL);
 
                         error = NULL;
                         rc = g_markup_parse_context_parse (context, buffer, length, &error);
