@@ -33,7 +33,7 @@ enum
         };
 
 
-typedef struct
+typedef struct _TagStack
 {
         gint size;
         gint items[STACKSIZE];
@@ -92,20 +92,20 @@ start_element_handler (GMarkupParseContext *context,
         ParseContext *ctx = user_data;
         g_debug("** start element: %s\n", element_name);
         if (!strcmp(element_name, "dives"))
-                push_tag(ctx->tags, TAG_DIVES);
+                push_tag(&ctx->tags, TAG_DIVES);
         else if (!strcmp(element_name, "dive"))
-                push_tag(ctx->tags, TAG_DIVE);
+                push_tag(&ctx->tags, TAG_DIVE);
         else if (!strcmp(element_name, "sample"))
-                push_tag(ctx->tags, TAG_SAMPLE);
+                push_tag(&ctx->tags, TAG_SAMPLE);
         else if (!strcmp(element_name, "pressure"))
-                push_tag(ctx->tags, TAG_PRESSURE);
+                push_tag(&ctx->tags, TAG_PRESSURE);
         else
                 {
-                        push_tag(ctx->tags, TAG_UNKNOWN);
+                        push_tag(&ctx->tags, TAG_UNKNOWN);
                         g_debug("Unown tag %s\n", element_name);
                 }
         /* Find the attributes for the current tag */
-        switch (get_tag(ctx->tags))
+        switch (get_tag(&ctx->tags))
                 {
                 case TAG_DIVES:
                         return;
@@ -193,7 +193,7 @@ text_handler(GMarkupParseContext *context,
 {
         ParseContext *ctx = user_data;
         /* Find the attributes for the current tag */
-        switch (get_tag(ctx->tags))
+        switch (get_tag(&ctx->tags))
                 {
                 case TAG_DIVES:
                         return;
@@ -209,7 +209,7 @@ end_element_handler (GMarkupParseContext *context,
 		       GError **error)
 {
         ParseContext *ctx = user_data;
-        pop_tag(ctx->tags);
+        pop_tag(&ctx->tags);
 }
 
 static GMarkupParser kelp_parser = {
