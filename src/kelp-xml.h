@@ -20,19 +20,22 @@
 #ifndef __KELP_XML_H__
 #define __KELP_XML_H__
 
+#include <string.h>
+
 #include <glib.h>
 #include <glib/gstdio.h>
+
 
 gint kelp_load_xml(gchar *filename);
 void kelp_save_xml(gchar *filename);
 
 enum
-{
-	XML_OK,
-	XML_LOAD_ERROR,
-	XML_FILE_ERROR,
-	XML_VERSION_ERROR,
-};
+        {
+                XML_OK,
+                XML_LOAD_ERROR,
+                XML_FILE_ERROR,
+                XML_VERSION_ERROR,
+        };
 
 
 #endif /* __KELP_APP_H__ */

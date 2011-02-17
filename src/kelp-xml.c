@@ -19,6 +19,35 @@
 
 #include "kelp-xml.h"
 
+enum
+        {
+                TAG_DIVES,
+                TAG_DIVE,
+                TAG_SAMPLE,
+                TAG_TIME,
+                TAG_DEPTH,
+                TAG_PRESSURE,
+                TAG_UNKNOWN
+        };
+
+
+typedef struct _ParseContext ParseContext;
+struct _ParseContext
+{
+/*
+  ParseState state;
+  ParseState prev_state;
+
+  GtkUIManager *self;
+
+  GNode *current;
+
+  guint merge_id;
+*/
+	gdouble	version;
+
+};
+
 static void
 start_element_handler (GMarkupParseContext *context,
 		       const gchar *element_name,
@@ -27,7 +56,22 @@ start_element_handler (GMarkupParseContext *context,
 		       gpointer user_data,
 		       GError **error)
 {
+        gint element;
         g_debug("** start element: %s\n", element_name);
+        if (strcmp(element_name, "dives"))
+                element = TAG_DIVES;
+        else if (strcmp(element_name, "dive"))
+                element = TAG_DIVE;
+        else if (strcmp(element_name, "sample"))
+                element = TAG_SAMPLE;
+        else if (strcmp(element_name, "time"))
+                element = TAG_TIME;
+        else if (strcmp(element_name, "depth"))
+                element = TAG_DEPTH;
+        else if (strcmp(element_name, "pressure"))
+                element = TAG_PRESSURE;
+        else
+                g_debug("Unown tag %s\n", element_name);
 
 }
 
