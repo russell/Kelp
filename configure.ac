@@ -28,6 +28,20 @@ AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
 
 PKG_CHECK_MODULES(KELP, [gtk+-2.0 >= 2.16 ])
 
+# debugging option
+AC_ARG_ENABLE(debug,
+AS_HELP_STRING([--enable-debug],
+               [enable debugging, default: no]),
+[case "${enableval}" in
+             yes) debug=true ;;
+             no)  debug=false ;;
+             *)   AC_MSG_ERROR([bad value ${enableval} for --enable-debug]) ;;
+esac],
+[debug=false])
+
+AM_CONDITIONAL(DEBUG, test x"$debug" = x"true")
+
+
 
 AC_OUTPUT([
 Makefile

@@ -12,9 +12,13 @@ AM_CPPFLAGS = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	$(KELP_CFLAGS)
 
+if DEBUG
+AM_CFLAGS = -g3 -O0
+else
 AM_CFLAGS =\
 	 -Wall\
 	 -g
+endif
 
 bin_PROGRAMS = kelp
 
