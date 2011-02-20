@@ -22,10 +22,12 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>
 
+#include "kelp-app.h"
 
 gint kelp_load_xml(gchar *filename);
 void kelp_save_xml(gchar *filename);

@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 8; tab-width: 8 -*- */
 /*
- * check_xml.c
+ * check_app.c
  * Copyright (C) 2011 Russell Sim <russell.sim@gmail.com>
  *
  * kelp is free software: you can redistribute it and/or modify it
@@ -20,36 +20,34 @@
 #include <check.h>
 #include <glib.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include "kelp-xml.h"
 #include "kelp-app.h"
 
-START_TEST (test_xml_import)
-{
-        char filename[1024];
-        Dive *dive;
-        char *fingerprint = "0B1E2AD8070B17";
-        getcwd(filename, sizeof(filename));
-        strcat(filename, "/test.xml");
-        gint ret = kelp_load_xml (filename);
-        fail_unless (ret == XML_OK,
-                     "Parsed file successfully.");
-        dive = kelp_lookup_dive (fingerprint);
 
-        fail_unless (109 == g_list_length(dive->samples),
-                     "Some samples weren't parsed");
+START_TEST (test_add_dive)
+{
+        Dive *dive;
+        Dive *dive1;
+        gchar *fingerprint = "AAAAA1111";
+        dive = g_malloc(sizeof *dive);
+        dive->fingerprint = "AAAAA1111";
+        kelp_add_dive (dive);
+        dive1 = kelp_lookup_dive (fingerprint);
+        fail_unless (!strcmp(fingerprint, dive1->fingerprint),
+                     "Dives aren't equal!");
 }
 END_TEST
 
 
 Suite *
-xml_suite (void)
+app_suite (void)
 {
-        Suite *s = suite_create ("XML");
+        Suite *s = suite_create ("APP");
 
         /* Core test case */
         TCase *tc_core = tcase_create ("Core");
-        tcase_add_test (tc_core, test_xml_import);
+        tcase_add_test (tc_core, test_add_dive);
         suite_add_tcase (s, tc_core);
 
         return s;
@@ -60,9 +58,9 @@ int
 main(void)
 {
         int nf;
-        Suite *s = xml_suite();
+        Suite *s = app_suite();
         SRunner *sr = srunner_create(s);
-        srunner_set_log(sr, "check_xml.log");
+        srunner_set_log(sr, "check_app.log");
         srunner_run_all(sr, CK_NORMAL);
         nf = srunner_ntests_failed(sr);
         srunner_free(sr);
