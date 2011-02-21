@@ -49,9 +49,7 @@ push_tag(TagStack *ps, int x)
                         abort();
                 }
         else
-
                 ps->items[ps->size++] = x;
-
 }
 
 static int
@@ -69,7 +67,6 @@ pop_tag(TagStack *ps)
                         abort();
                 }
         else
-                g_debug("size is, %i\n", ps->size);
                 --ps->size;
 }
 
@@ -93,7 +90,6 @@ start_element_handler (GMarkupParseContext *context,
         Sample *sample = NULL;
         Pressure *pressure = NULL;
         ParseContext *ctx = user_data;
-        g_debug("** start element: %s\n", element_name);
         if (!strcmp(element_name, "dives"))
                 push_tag(&ctx->tags, TAG_DIVES);
         else if (!strcmp(element_name, "dive"))
