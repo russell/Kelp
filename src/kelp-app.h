@@ -26,7 +26,7 @@
 /* store the widgets which may need to be accessed in a typedef struct */
 struct _Kelp
 {
-        GtkWidget *window;
+        GtkWindow *window;
 	GtkWidget *prefs;
 	GtkComboBox *computer_type;
 	GtkFileChooserButton *computer_port;

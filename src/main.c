@@ -96,10 +96,10 @@ void on_about_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 }
 
 
-GtkWidget*
+GtkWindow*
 create_window (Kelp *kelp)
 {
-	GtkWidget *window;
+	GtkWindow *window;
 	GtkBuilder *builder;
 	GError* error = NULL;
 
@@ -112,7 +112,7 @@ create_window (Kelp *kelp)
 
 	/* This is important */
 	gtk_builder_connect_signals (builder, kelp);
-	window = GTK_WIDGET (gtk_builder_get_object (builder, "window"));
+	window = GTK_WINDOW (gtk_builder_get_object (builder, "window"));
 	kelp->prefs = GTK_WIDGET (gtk_builder_get_object (builder, "kelp_preferences"));
 	kelp->computer_type = GTK_COMBO_BOX (gtk_builder_get_object (builder, "prefs_comptype"));
 	kelp->computer_port = GTK_FILE_CHOOSER_BUTTON (gtk_builder_get_object (builder, "prefs_port"));
@@ -127,7 +127,7 @@ create_window (Kelp *kelp)
 int
 main (int argc, char *argv[])
 {
- 	GtkWidget *window;
+ 	GtkWindow *window;
 
 	/* allocate the memory needed by our Kelp struct */
 	GLOBALS = g_slice_new0 (Kelp);
@@ -142,7 +142,7 @@ main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 
 	window = create_window (GLOBALS);
-	gtk_widget_show (window);
+	gtk_widget_show (GTK_WIDGET (window));
 	gtk_main ();
 
 	/* free memory we allocated for Kelp struct */
