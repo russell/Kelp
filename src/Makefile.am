@@ -24,12 +24,17 @@ bin_PROGRAMS = kelp
 
 kelp_SOURCES = \
 	kelp-app.h \
+	kelp-app.c \
 	callbacks.c \
 	callbacks.h \
 	kelp-computer-import.h \
 	kelp-computer-import.c \
 	kelp-prefs.c \
 	kelp-prefs.h \
+	kelp-xml.c \
+	kelp-xml.h \
+	kelp-window.c \
+	kelp-window.h \
 	main.c
 
 kelp_LDFLAGS = \

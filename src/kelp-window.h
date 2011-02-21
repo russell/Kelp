@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 8; tab-width: 8 -*- */
 /*
- * kelp-app.c
+ * kelp-window.h
  * Copyright (C) 2011 Russell Sim <russell.sim@gmail.com>
  *
  * kelp is free software: you can redistribute it and/or modify it
@@ -17,36 +17,12 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __KELP_WINDOW_H__
+#define __KELP_WINDOW_H__
+
 #include "kelp-app.h"
+#include "kelp-xml.h"
 
-Kelp *GLOBALS;
+void on_open_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp);
 
-
-static GHashTable *dives = NULL;
-
-
-void
-kelp_add_dive(Dive *dive)
-{
-        if (dives == NULL)
-                dives = g_hash_table_new(g_str_hash,g_str_equal);
-
-        g_hash_table_insert(dives, GINT_TO_POINTER(dive->fingerprint), dive);
-}
-
-
-Dive*
-kelp_lookup_dive(const gchar *fingerprint)
-{
-        if (dives == NULL)
-                dives = g_hash_table_new(g_str_hash,g_str_equal);
-
-        return g_hash_table_lookup(dives, fingerprint);
-}
-
-
-GList*
-kelp_get_dives(void)
-{
-        return g_hash_table_get_values(dives);
-}
+#endif /* __KELP_APP_H__ */

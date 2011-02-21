@@ -76,4 +76,6 @@ void kelp_add_dive(Dive *dive);
 
 Dive* kelp_lookup_dive(const gchar *fingerprint);
 
+GList* kelp_get_dives(void);
+
 #endif /* __KELP_APP_H__ */
