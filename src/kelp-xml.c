@@ -90,8 +90,8 @@ start_element_handler (GMarkupParseContext *context,
 		       GError **error)
 {
         gint i;
-        sample_t *sample = NULL;
-        pressure_t *pressure = NULL;
+        Sample *sample = NULL;
+        Pressure *pressure = NULL;
         ParseContext *ctx = user_data;
         g_debug("** start element: %s\n", element_name);
         if (!strcmp(element_name, "dives"))
@@ -137,7 +137,7 @@ start_element_handler (GMarkupParseContext *context,
                                                 attribute_names[i]);
                         break;
                 case TAG_SAMPLE:
-                        sample = g_malloc0(sizeof(sample_t));
+                        sample = g_malloc0(sizeof(Sample));
                         for (i = 0; attribute_names[i] != NULL; i++)
                                 if (!strcmp (attribute_names[i], "time"))
                                         {
@@ -161,7 +161,7 @@ start_element_handler (GMarkupParseContext *context,
                         break;
                 case TAG_PRESSURE:
                         sample = g_list_last(ctx->dive->samples)->data;
-                        pressure = g_malloc0(sizeof(pressure_t));
+                        pressure = g_malloc0(sizeof(Pressure));
                         for (i = 0; attribute_names[i] != NULL; i++)
                                 if (!strcmp (attribute_names[i], "tank"))
                                         pressure->tank = atol(attribute_values[i]);
@@ -183,8 +183,8 @@ text_handler(GMarkupParseContext *context,
              gpointer user_data,
              GError **error)
 {
-        pressure_t *pressure = NULL;
-        sample_t *sample = NULL;
+        Pressure *pressure = NULL;
+        Sample *sample = NULL;
         ParseContext *ctx = user_data;
         /* Find the attributes for the current tag */
         switch (get_tag(&ctx->tags))

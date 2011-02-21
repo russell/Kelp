@@ -39,18 +39,18 @@ extern Kelp *GLOBALS;
 
 
 
-typedef struct gasmix_t {
+typedef struct _Gasmix {
 	double helium;
 	double oxygen;
 	double nitrogen;
-} gasmix_t;
+} Gasmix;
 
-typedef struct pressure_t{
+typedef struct _Pressure{
         unsigned int tank;
         double value;
-} pressure_t;
+} Pressure;
 
-typedef struct sample_t {
+typedef struct _Sample {
         double depth;
         time_t time;
 	double temperature;
@@ -58,7 +58,7 @@ typedef struct sample_t {
 	unsigned int heartbeat;
 	unsigned int bearing;
         GList *pressures;
-} sample_t;
+} Sample;
 
 typedef struct _Dive
 {
