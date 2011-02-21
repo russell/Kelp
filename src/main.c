@@ -51,10 +51,10 @@
 #  define N_(String) (String)
 #endif
 
-
-#include "kelp-prefs.h"
 #include "callbacks.h"
+#include "kelp-prefs.h"
 #include "kelp-app.h"
+
 
 
 /* For testing propose use the local (not installed) ui file */
