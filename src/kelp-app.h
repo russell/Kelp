@@ -63,10 +63,9 @@ typedef struct _Sample {
 typedef struct _Dive
 {
         gchar *fingerprint;
-	time_t *time;
+	time_t datetime;
 	unsigned int number;
         unsigned int size;
-        time_t date;
         GTimeVal divetime; // might change this later...
 	double maxdepth;
         GList *gasmixes;

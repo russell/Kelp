@@ -122,7 +122,7 @@ start_element_handler (GMarkupParseContext *context,
                                                 strptime(attribute_values[i], "%Y-%m-%d %H:%M:%S", &tm);
                                                 time = g_malloc0(sizeof(time));
                                                 *time = mktime(&tm);
-                                                ctx->dive->time = time;
+                                                ctx->dive->datetime = *time;
                                         }
                                 else if (!strcmp (attribute_names[i], "number"))
                                         ctx->dive->number = atol(attribute_values[i]);
