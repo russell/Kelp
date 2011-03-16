@@ -115,6 +115,7 @@ create_window (Kelp *kelp)
 	window = GTK_WINDOW (gtk_builder_get_object (builder, "window"));
 	kelp->prefs = GTK_WIDGET (gtk_builder_get_object (builder, "kelp_preferences"));
 	kelp->computer_type = GTK_COMBO_BOX (gtk_builder_get_object (builder, "prefs_comptype"));
+	kelp->dive_list = GTK_TREE_VIEW (gtk_builder_get_object (builder, "dive_treeview"));
 	kelp->computer_port = GTK_FILE_CHOOSER_BUTTON (gtk_builder_get_object (builder, "prefs_port"));
 
 	kelp->window = window;

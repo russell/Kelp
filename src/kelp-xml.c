@@ -113,12 +113,10 @@ start_element_handler (GMarkupParseContext *context,
                         for (i = 0; attribute_names[i] != NULL; i++)
                                 if (!strcmp (attribute_names[i], "datetime"))
                                         {
-                                                struct tm tm;
-                                                time_t *time = NULL;
-                                                strptime(attribute_values[i], "%Y-%m-%d %H:%M:%S", &tm);
-                                                time = g_malloc0(sizeof(time));
-                                                *time = mktime(&tm);
-                                                ctx->dive->datetime = *time;
+                                                struct tm *time = NULL;
+                                                time = g_malloc0(sizeof(struct tm));
+                                                strptime(attribute_values[i], "%Y-%m-%d %H:%M:%S", time);
+                                                ctx->dive->datetime = time;
                                         }
                                 else if (!strcmp (attribute_names[i], "number"))
                                         ctx->dive->number = atol(attribute_values[i]);

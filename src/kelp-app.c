@@ -31,9 +31,23 @@ kelp_add_dive(Dive *dive)
         if (dives == NULL)
                 dives = g_hash_table_new(g_str_hash,g_str_equal);
 
-        g_hash_table_insert(dives, GINT_TO_POINTER(dive->fingerprint), dive);
+        g_hash_table_insert(dives, dive->fingerprint, dive);
 }
 
+void
+kelp_dive_iter_init(GHashTableIter *iter)
+{
+        if (dives == NULL)
+                dives = g_hash_table_new(g_str_hash,g_str_equal);
+
+        g_hash_table_iter_init(iter, dives);
+}
+
+gboolean
+kelp_dive_iter_next(GHashTableIter *iter, gpointer *key, gpointer *value)
+{
+        return g_hash_table_iter_next(iter, key, value);
+}
 
 Dive*
 kelp_lookup_dive(const gchar *fingerprint)

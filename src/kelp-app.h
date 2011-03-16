@@ -30,6 +30,7 @@ struct _Kelp
 	GtkWidget *prefs;
 	GtkComboBox *computer_type;
 	GtkFileChooserButton *computer_port;
+	GtkTreeView *dive_list;
 	gchar *computer;
 };
 typedef struct _Kelp Kelp;
@@ -63,7 +64,7 @@ typedef struct _Sample {
 typedef struct _Dive
 {
         gchar *fingerprint;
-	time_t datetime;
+	struct tm *datetime;
 	unsigned int number;
         unsigned int size;
         GTimeVal divetime; // might change this later...

@@ -23,6 +23,12 @@
 #include "kelp-app.h"
 #include "kelp-xml.h"
 
+// Call Backs
+
 void on_open_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp);
+
+// Window access
+
+
 
 #endif /* __KELP_APP_H__ */

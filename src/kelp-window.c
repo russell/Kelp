@@ -41,12 +41,61 @@ void on_open_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
                         gchar *filename;
                         GList *dives;
                         GtkListStore *list;
+                        GHashTableIter iter;
+                        GtkTreeIter   toplevel, titer;
+                        gpointer key, value;
+                        GtkTreeViewColumn *col;
+                        GtkCellRenderer *renderer;
+                        gchar *datetime;
+
                         filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
                         kelp_load_xml (filename);
                         g_free (filename);
-                        //dives = kelp_get_dives();
+
+                        // iter over all the dives an populate the list
                         list = gtk_list_store_new(NUM_COLS,
                                                   G_TYPE_STRING);
+
+                        kelp_dive_iter_init (&iter);
+                        while (kelp_dive_iter_next (&iter, &key, &value))
+                                {
+                                        Dive *dive = (Dive *) value;
+                                        datetime = g_malloc0(sizeof(char[20]));
+					gtk_list_store_append (list, &titer);
+
+                                        sprintf(datetime, "%02d:%02d\n",
+                                                dive->datetime->tm_hour,
+                                                dive->datetime->tm_min);
+					gtk_list_store_set (list, &titer,
+                                                            COL_DATETIME_T,
+                                                            datetime,
+                                                            -1);
+                                }
+
+                        col = gtk_tree_view_column_new();
+
+                        gtk_tree_view_column_set_title(col, "Dive");
+
+                        /* pack tree view column into tree view */
+                        gtk_tree_view_append_column(GTK_TREE_VIEW(kelp->dive_list), col);
+
+                        renderer = gtk_cell_renderer_text_new();
+
+                        /* pack cell renderer into tree view column */
+                        gtk_tree_view_column_pack_start(col, renderer, TRUE);
+
+                        /* set 'text' property of the cell renderer */
+                        gtk_tree_view_column_add_attribute(col, renderer, "text", COL_DATETIME_T);
+
+
+                        gtk_tree_view_set_model(GTK_TREE_VIEW(kelp->dive_list), GTK_TREE_MODEL(list));
+
+                        g_object_unref(G_OBJECT(list)); /* destroy model automatically with view */
+
+                        gtk_tree_selection_set_mode(gtk_tree_view_get_selection(GTK_TREE_VIEW(kelp->dive_list)),
+                                                    GTK_SELECTION_SINGLE);
+
+
                 }
         gtk_widget_destroy (dialog);
 }
