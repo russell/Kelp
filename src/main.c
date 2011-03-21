@@ -22,6 +22,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <locale.h>
 
 #include <config.h>
 
@@ -139,7 +140,7 @@ main (int argc, char *argv[])
 	textdomain (GETTEXT_PACKAGE);
 #endif
 
-	gtk_set_locale ();
+	setlocale (LC_ALL, "");
 	gtk_init (&argc, &argv);
 
 	window = create_window (GLOBALS);

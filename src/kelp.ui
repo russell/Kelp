@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.20"/>
+  <!-- interface-requires gtk+ 3.0 -->
   <object class="GtkWindow" id="kelp_preferences">
     <property name="can_focus">False</property>
     <property name="modal">True</property>
@@ -332,9 +332,13 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTextView" id="textview1">
+              <object class="GtkTreeView" id="dive_samples">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="reorderable">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection2"/>
+                </child>
               </object>
               <packing>
                 <property name="resize">True</property>
