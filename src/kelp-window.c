@@ -27,6 +27,30 @@ enum
 };
 
 
+void on_dive_treeview_cursor_changed (GtkTreeView *treeview, Kelp *kelp)
+{
+        GtkTreeSelection *selection;
+        GtkTreeModel     *model;
+        GtkTreeIter       iter;
+
+        selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+        if (gtk_tree_selection_get_selected(selection, &model, &iter))
+                {
+                        gchar *name;
+
+                        gtk_tree_model_get (model, &iter, COL_DATETIME_T, &name, -1);
+
+                        g_print ("selected row is: %s\n", name);
+
+                        g_free(name);
+                }
+        else
+                {
+                        g_print ("no row selected.\n");
+                }
+}
+
+
 void on_open_menuitem_activate (GtkMenuItem *menuitem, Kelp *kelp)
 {
         GtkWidget *dialog;
