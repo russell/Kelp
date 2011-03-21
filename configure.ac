@@ -26,7 +26,7 @@ PKG_CHECK_MODULES([CHECK], [check >= 0.9.4],,
   AC_MSG_WARN([Check not found; cannot run unit tests!]))
 AM_CONDITIONAL(HAVE_CHECK, test x"$have_check" = "xyes")
 
-PKG_CHECK_MODULES(KELP, [gtk+-2.0 >= 2.16 ])
+PKG_CHECK_MODULES(KELP, [gtk+-2.0 >= 2.22 ])
 
 # debugging option
 AC_ARG_ENABLE(debug,

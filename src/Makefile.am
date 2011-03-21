@@ -1,6 +1,5 @@
 ## Process this file with automake to produce Makefile.in
 
-## Created by Anjuta
 include $(top_srcdir)/flymake.mk
 
 uidir = $(datadir)/kelp/ui
